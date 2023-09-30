@@ -6,8 +6,14 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
+interface RickAndMorty {
+  name: string;
+  species: string;
+  image: string;
+}
+
 function ComponentTestAsync() {
-  const [result, setResult] = useState();
+  const [result, setResult] = useState<RickAndMorty | null>();
   const [error, setError] = useState<boolean>(false);
 
   let url = "https://rickandmortyapi.com/api/characters/1";
