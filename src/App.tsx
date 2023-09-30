@@ -1,27 +1,23 @@
-import './App.css'
-import { ComponentTest } from './components'
-import { ErrorBoundary } from './utilities'
-import { useEffect, useState } from 'react'
+import './App.css';
+import { ComponentTest } from './components';
+import ComponentTestAsync from './components/ComponentTestAsync';
+// import { useEffect, useState } from 'react';
 
 function App() {
-  const [name, setName] = useState<string | null>(null);
+  // const [name, setName] = useState<string | null>(null);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setName("jhon");
-    }, 2000);
-  }, [])
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setName("jhon");
+  //   }, 2000);
+  // }, []);
 
   return (
     <div className='App'>
-      <ErrorBoundary
-        fallBackComponent={<>Fatal Error</>}
-        resetCondition={name}
-      >
-        <ComponentTest name={name} />
-      </ErrorBoundary>
+      <ComponentTestAsync />
+      <ComponentTest name='Henry' />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

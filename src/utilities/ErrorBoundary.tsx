@@ -1,9 +1,10 @@
-import React from 'react'
+import React from 'react';
 
 interface Props {
   children: React.ReactNode;
   fallBackComponent: React.ReactNode;
   resetCondition?: unknown;
+  error: boolean;
 }
 
 interface State {
@@ -14,7 +15,7 @@ interface State {
 export class ErrorBoundary extends React.Component<Props, State>{
   constructor(props: Props) {
     super(props);
-    this.state = { hasError: false, resetCondition: props.resetCondition };
+    this.state = { hasError: false, resetCondition: props.resetCondition, };
   }
 
   static getDerivedStateFromError(error: Error) {
@@ -22,8 +23,6 @@ export class ErrorBoundary extends React.Component<Props, State>{
     return { hasError: true };
   }
   static getDerivedStateFromProps(props: Props, state: State) {
-    console.log("resetCondition");
-
     if (props.resetCondition !== state.resetCondition) {
       return { hasError: false, resetCondition: props.resetCondition };
     }
@@ -31,7 +30,7 @@ export class ErrorBoundary extends React.Component<Props, State>{
   }
 
   render() {
-    if (this.state.hasError) {
+    if (this.state.hasError || this.props.error) {
       return this.props.fallBackComponent;
     }
     return this.props.children;
