@@ -7,7 +7,9 @@ function ComponentTest({ name }: { name: string }) {
   };
   return (
     <div>
-      {name.toUpperCase() + " " + count}
+      <div style={{ margin: '20px' }}>
+        {name.toUpperCase() + " " + count}
+      </div>
       <button onClick={handleClick}>Click me</button>
     </div>
   );

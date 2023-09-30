@@ -1,5 +1,10 @@
 import { useEffect, useState } from 'react';
 import { ErrorBoundary } from '../utilities';
+import Card from '@mui/material/Card';
+import CardMedia from '@mui/material/CardMedia';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 
 function ComponentTestAsync() {
   const [result, setResult] = useState();
@@ -31,9 +36,19 @@ function ComponentTestAsync() {
 
   return (
     <ErrorBoundary fallBackComponent={<>Fatal Error</>} resetCondition={result} error={error}>
-      <div>
-        {JSON.stringify(result)}
-      </div>
+      <Box m="auto">
+        <Card sx={{ maxWidth: 345 }}>
+          <CardMedia sx={{ height: 200, width: 345 }} image={result?.image} title={result?.name} style={{ objectFit: "contain" }} />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              {result?.name}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              {result?.species}
+            </Typography>
+          </CardContent>
+        </Card>
+      </Box>
     </ErrorBoundary>
   );
 }
